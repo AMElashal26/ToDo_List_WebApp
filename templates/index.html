@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="title" required>
+        <input type="submit" value="Add">
+    </form>
+    {% for todo in todo_list %}
+        <div>
+            <form action="/update/{{ todo.id }}" method="POST">
+                <input type="checkbox" name="complete" onchange="this.form.submit()" {{ 'checked' if todo.complete else '' }}>
+                {{ todo.title }}
+            </form>
+        </div>
+    {% endfor %}
+</body>
+</html>
